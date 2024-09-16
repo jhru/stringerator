@@ -1,0 +1,148 @@
+@import '/src/styles/variables';
+
+.generator {
+    @include flex($dir: column, $jus: flex-start, $gap: $space);
+    @include border;
+    width: 100%;
+    max-width: 380px;
+    padding: $space;
+    background-color: $dark_op;
+    @include default_open;
+
+    .menu {
+        @include flex($ali: stretch);
+        width: 100%;
+
+        h1 {
+            flex: 1 0;
+            @include button($radius: 5px 0 0 5px);
+        }
+
+        h2 {
+            flex: 0 0 min-content;
+            @include button($radius: 0 5px 5px 0);
+        }
+    }
+
+    .content {
+        @include flex($dir: column, $jus: flex-start, $gap: $space);
+        width: 100%;
+
+        .about {
+            @include flex($dir: column, $ali: stretch, $gap: $space);
+
+            > p {
+                @include border;
+                @include text($spa: 0);
+                padding: $space;
+                background-color: $dark_op;
+            }
+
+            > .block {
+                @include flex($dir: column, $ali: stretch, $gap: $space);
+                @include border;
+                padding: $space;
+                background-color: $dark_op;
+
+                > h3 {
+                    @include border;
+                    @include text($tra: uppercase);
+                    padding: $space;
+                    background-color: $dark_op;
+                }
+
+                > div {
+                    @include flex($gap: $space);
+
+                    > strong {
+                        @include flex($gap: 5px);
+                        flex: 1 0;
+
+                        > .text {
+                            @include text($tra: uppercase);
+                        }
+
+                        > .click {
+                            width: $lineheight;
+                            height: $lineheight;
+                            background: url('/webp/click.webp') center /
+                                $lineheight no-repeat;
+                        }
+                    }
+
+                    > p {
+                        @include text($tra: uppercase);
+                        flex: 1 0;
+                    }
+                }
+            }
+        }
+
+        .result {
+            @include flex;
+            @include border;
+            position: relative;
+            width: calc(100% - 40px);
+            padding: $space calc($space + 20px);
+            background-color: $dark_op;
+
+            > strong {
+                @include flex;
+                min-height: 40px;
+
+                &.enabled {
+                    @include text($col: $light, $siz: 12px, $spa: 0);
+                    word-break: break-all;
+                }
+
+                &.disabled {
+                    @include text($col: $red, $siz: 12px, $spa: 0);
+                }
+            }
+
+            > button {
+                position: absolute;
+                top: $space;
+                width: 40px;
+                height: calc(100% - $space * 2);
+
+                &:first-of-type {
+                    left: -20px;
+                }
+
+                &:last-of-type {
+                    right: -20px;
+                }
+            }
+        }
+
+        .option {
+            @include flex($wra: wrap, $gap: $space);
+            width: 100%;
+
+            strong {
+                @include border;
+                @include text($tra: uppercase);
+                flex: 0 0 calc(100% - 2 * $space - 2 * $calculated_height);
+                padding: $space;
+                background-color: $dark;
+            }
+
+            button {
+                @include button;
+
+                &:disabled {
+                    transform: scale(0);
+                }
+
+                &.crement {
+                    flex: 0 0 $calculated_height;
+                }
+
+                &.alphabet {
+                    flex: 0 0 calc((100% - $space) / 2);
+                }
+            }
+        }
+    }
+}

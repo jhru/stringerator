@@ -1,0 +1,85 @@
+// FONT [ JETBRAINS ]
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+// BACKGROUND
+
+$gradient: linear-gradient(to right, #304352, #d7d2cc);
+
+// COLORS
+
+$light: hsla(200, 20%, 80%, 1);
+$dark: hsla(204, 24%, 25%, 1);
+$dark_op: hsla(204, 24%, 25%, 0.5);
+$red: hsla(360, 50%, 75%, 1);
+
+// DEFAULTS
+
+$space: 15px;
+$fontsize: 10px;
+$lineheight: 15px;
+$calculated_height: calc($lineheight + $space * 2);
+
+// MIXINS
+
+@mixin text(
+    $col: $light,
+    $siz: 10px,
+    $wei: normal,
+    $spa: 1px,
+    $lin: 1.5,
+    $tra: none
+) {
+    color: $col;
+    font-size: $siz;
+    font-weight: $wei;
+    font-family: 'JetBrains Mono';
+    letter-spacing: $spa;
+    line-height: $lin;
+    text-align: center;
+    text-transform: $tra;
+    text-decoration: none;
+}
+
+@mixin border($out: none, $bor: none, $rad: 5px) {
+    outline: $out;
+    border: $bor;
+    border-radius: $rad;
+}
+
+@mixin flex($dir: row, $jus: center, $ali: center, $wra: nowrap, $gap: 0px) {
+    display: flex;
+    flex-direction: $dir;
+    justify-content: $jus;
+    align-items: $ali;
+    flex-wrap: $wra;
+    gap: $gap;
+}
+
+@mixin button($radius: 5px) {
+    @include border($rad: $radius);
+    @include text($tra: uppercase);
+    padding: $space;
+    background-color: $dark_op;
+    transition: all 150ms linear;
+    cursor: pointer;
+
+    &.active {
+        background-color: $dark;
+    }
+}
+
+@mixin default_open {
+    animation: openthis 300ms linear;
+
+    @keyframes openthis {
+        from {
+            opacity: 0;
+            transform: scale(0);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+}

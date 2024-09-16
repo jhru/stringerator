@@ -1,0 +1,115 @@
+@import '/src/styles/variables';
+
+@keyframes updown {
+    0% {
+        transform: translateY(-10px);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes downup {
+    0% {
+        transform: translateY(10px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(10px);
+    }
+}
+
+.loader {
+    @include flex($gap: 20px);
+
+    > div {
+        @include border;
+        width: 30px;
+        height: 20px;
+        background-color: $dark_op;
+
+        &:nth-child(odd) {
+            animation: updown 1000ms linear infinite;
+        }
+
+        &:nth-child(even) {
+            animation: downup 1000ms linear infinite;
+        }
+    }
+}
+
+.button {
+    &_text {
+        @include flex;
+        @include border;
+        padding: 15px;
+        background-color: $dark;
+        cursor: pointer;
+
+        &:not(.clicked) > svg {
+            display: none;
+        }
+
+        &.clicked > span {
+            display: none;
+        }
+
+        &:disabled {
+            transform: scale(0);
+        }
+
+        > span {
+            @include text($lin: 15px, $tra: uppercase);
+        }
+    }
+    &_image {
+        @include flex;
+        @include border;
+        padding: 10px;
+        background-color: $dark;
+        transition: all 150ms linear;
+        cursor: pointer;
+
+        &:not(.clicked) > svg {
+            display: none;
+        }
+
+        &.clicked > span {
+            display: none;
+        }
+
+        &:disabled {
+            transform: scale(0);
+        }
+
+        > span {
+            width: 20px;
+            height: 20px;
+            background: no-repeat center / 20px $dark;
+        }
+    }
+}
+
+.circle {
+    width: 15px;
+    height: 15px;
+    animation: rotate 2500ms linear infinite;
+
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    > circle {
+        fill: $light;
+    }
+}

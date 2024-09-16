@@ -1,0 +1,10 @@
+@import '/src/styles/variables';
+
+.authorship {
+    @include border;
+    @include text($tra: uppercase);
+    padding: 15px;
+    background-color: $dark_op;
+    cursor: pointer;
+    @include default_open;
+}
